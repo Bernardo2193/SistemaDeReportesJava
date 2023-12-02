@@ -1,5 +1,6 @@
 package com.JavaIntermedioUTN.Modelos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,20 +19,21 @@ public class Caso {
     @Column(name = "idCaso", nullable = false, unique = true)
     private Integer idCaso;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "idReporte",referencedColumnName = "idReporte")
     private Reporte reporte;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "idServicio",referencedColumnName = "idServicio")
     private Servicio servicio;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "cuitCliente",referencedColumnName = "cuitCliente")
     private Cliente cliente;
 
     //Agregue  esta relacion caso-tecnico
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "idTecnicoQueResolvio",referencedColumnName = "idTecnico")
     private Tecnico tecnicoQueResolvio;
 

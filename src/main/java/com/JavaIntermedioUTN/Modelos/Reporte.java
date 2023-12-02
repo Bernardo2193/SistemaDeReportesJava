@@ -17,7 +17,7 @@ public class Reporte {
     @Column(name = "idReporte", nullable = false, unique = true)
     private Integer idReporte;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "idProblema", referencedColumnName = "idProblema")
     private Problema problema;
 

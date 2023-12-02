@@ -18,7 +18,7 @@ public class Tecnico {
     @Column(name = "idTecnico", nullable = false, unique = true)
     private Integer idTecnico;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "EspecialidadPorTecnico", joinColumns = @JoinColumn(name = "idTecnico"), inverseJoinColumns = @JoinColumn(name = "idEspecialidad"))
     private Set<Especialidad> especialidades;
 

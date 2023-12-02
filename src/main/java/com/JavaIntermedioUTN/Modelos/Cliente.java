@@ -17,11 +17,11 @@ public class Cliente {
     @Column(name = "cuitCliente", nullable = false, unique = true, length = 25)
     private String cuitCliente;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "ServicioPorCliente",joinColumns = @JoinColumn(name = "cuitCliente"),inverseJoinColumns = @JoinColumn(name="idServicio"))
     private Set<Servicio> servicios;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "cliente")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "cliente",fetch = FetchType.EAGER)
     private Set<Caso> casos;
 
     @Column(name = "razonSocial", length = 45, nullable = false)
